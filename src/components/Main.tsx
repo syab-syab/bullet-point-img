@@ -29,15 +29,13 @@ const Wrapper = styled.div`
 const SubWrapper = styled.div`
   margin: 0;
   padding: 0;
-  height: 90vh;
 `
 
 const TextArea = styled.textarea`
   font-size: 2rem;
   width: 100%;
-  height: 50%;
+  height: 25rem;
   border: 0.3rem solid black;
-  border-radius: 1rem;
   resize: none;
   padding: 1rem;
 `
@@ -45,14 +43,31 @@ const TextArea = styled.textarea`
 const Capture = styled.section`
   font-size: 2rem;
   width: 100%;
-  min-height: 50%;
+  min-height: 25rem;
   border: 0.3rem solid black;
-  border-radius: 1rem;
   overflow-wrap: break-word;
   text-align: left;
   background: white;
   padding: 1rem;
 `
+
+// ボタン
+
+const BtnWrapper = styled.div`
+  display: flex;
+  margin: 3rem 0;
+`
+
+const Btn = styled.button`
+  background: #F3D0D7;
+  flex-grow: 1;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 0.1rem solid black;
+  cursor: pointer;
+`
+
+// 画像化
 
 const nonDisplay = "display: none;"
 
@@ -60,23 +75,38 @@ const btnColor = "color: black;"
 
 const ImgCreateBtn = styled.button<{$isPreview?: boolean}>`
   ${props => props.$isPreview ? btnColor : nonDisplay};
+  margin: 3rem 0;
+  background: #F3D0D7;
+  flex-grow: 1;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 0.1rem solid black;
+  cursor: pointer;
 `
 
 const MakeImageSectionWrapper = styled.div`
   margin: 0;
   padding: 0;
-  margin-top: 6rem;
 `
 
 const MakeImageSection = styled.section<{$isDownload?: boolean}>`
   width: 100%;
-
-
   ${props => props.$isDownload ? btnColor : nonDisplay};
 `
 
 const ImageDownloadButtonSection = styled.section<{$isDownload?: boolean}>`
   ${props => props.$isDownload ? btnColor : nonDisplay};
+  margin-top: 3rem;
+`
+
+const ImageDownloadLink = styled.a`
+  background: #F3D0D7;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 0.1rem solid black;
+  text-decoration: none;
+  color: black;
+  padding: 0.3rem;
 `
 
 const Main = () => {
@@ -126,15 +156,16 @@ const Main = () => {
       <SubWrapper>
         <TextArea value={sentence} onChange={(e) => setSentence(e.target.value)} />
 
-        <button onClick={textContent}>プレビューを表示</button>
-
-        <button onClick={() => setSentence("")}>クリア</button>
+        <BtnWrapper>
+          <Btn onClick={textContent}>プレビュー</Btn>
+          <Btn onClick={() => setSentence("")}>クリア</Btn>
+        </BtnWrapper>
 
         <Capture id='capture'>
         <ul>
         {
-          imgSentence.map(s => {
-            return <li>{s}</li>
+          imgSentence.map((s, index) => {
+            return <li key={index}>{s}</li>
           })
         }
         </ul>
@@ -152,7 +183,7 @@ const Main = () => {
       </MakeImageSectionWrapper>
 
       <ImageDownloadButtonSection id="image-download-button-section"  $isDownload={download}>
-        <a href="" id="image-download" download="screenshot">画像ダウンロード</a>
+        <ImageDownloadLink href="" id="image-download" download="screenshot">画像ダウンロード</ImageDownloadLink>
       </ImageDownloadButtonSection>
     </Wrapper>
   )

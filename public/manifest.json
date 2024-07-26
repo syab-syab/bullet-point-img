@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "箇条画像化",
+  "name": "箇条書き画像化",
   "icons": [
     {
       "src": "favicon.ico",
