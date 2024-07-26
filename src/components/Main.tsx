@@ -26,6 +26,11 @@ const Wrapper = styled.div`
   }
 `
 
+const Span = styled.span`
+  color: red;
+  font-weight: bold;
+`
+
 const SubWrapper = styled.div`
   margin: 0;
   padding: 0;
@@ -154,6 +159,9 @@ const Main = () => {
   return (
     <Wrapper>
       <SubWrapper>
+        <p>
+          <Span>※改行すると箇条書きになります。</Span>
+        </p>
         <TextArea value={sentence} onChange={(e) => setSentence(e.target.value)} />
 
         <BtnWrapper>
